@@ -11,15 +11,20 @@ const oneTodo = async (req, res) => {
 }
 
 const addTodo = async (req, res) => {
-
 const newTodo = new Todo(req.body);
 const savedTodo = await newTodo.save();
 res.status(201).json(savedTodo)
 }
 
+const deleteTodo = async (req, res) => {
+  await Todo.findByIdAndRemove(req.params._id);
+  res.status(204).end()
+
+}
 
 module.exports = {
   allTodo,
   oneTodo,
   addTodo,
+  deleteTodo
 }
