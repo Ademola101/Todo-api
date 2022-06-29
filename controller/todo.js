@@ -6,7 +6,7 @@ const allTodo = async (req, res) => {
 }
 
 const oneTodo = async (req, res) => {
-  const todo = await Todo.findById(req.params._id);
+  const todo = await Todo.findById(req.params.id);
   todo ? res.json(todo) : res.status(404).end()
 }
 
@@ -21,17 +21,35 @@ const newTodo =  new Todo ({
 })
 const savedTodo = await newTodo.save();
 res.status(201).json(savedTodo)
-}
+};
 
 const deleteTodo = async (req, res) => {
-  await Todo.findByIdAndRemove(req.params._id);
-  res.status(204).end()
+  await Todo.findByIdAndRemove(req.params.id);
+  res.status(204).end();
+};
 
+const updateTodo = async(req, res) => {
+  const { title, description, important } = req.body
+  const newTodo = {
+    title,
+    description,
+    important,
+  };
+
+try{
+const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, newTodo, {new:true});
+res.json(updatedTodo)
 }
+
+catch(err){
+  res.status(400)
+}}
+
 
 module.exports = {
   allTodo,
   oneTodo,
   addTodo,
-  deleteTodo
+  deleteTodo,
+  updateTodo
 }
