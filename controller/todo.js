@@ -10,9 +10,16 @@ const oneTodo = async (req, res) => {
   todo ? res.json(todo) : res.status(404).end()
 }
 
+const addTodo = async (req, res) => {
+
+const newTodo = new Todo(req.body);
+const savedTodo = await newTodo.save();
+res.status(201).json(savedTodo)
+}
 
 
 module.exports = {
   allTodo,
-  oneTodo
+  oneTodo,
+  addTodo,
 }
