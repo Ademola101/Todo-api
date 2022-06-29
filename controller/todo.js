@@ -6,7 +6,7 @@ const allTodo = async (req, res) => {
 }
 
 const oneTodo = async (req, res) => {
-  const todo = await Todo.findById(req.params.id);
+  const todo = await Todo.findById(req.params._id);
   todo ? res.json(todo) : res.status(404).end()
 }
 
