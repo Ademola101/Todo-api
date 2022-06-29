@@ -11,7 +11,14 @@ const oneTodo = async (req, res) => {
 }
 
 const addTodo = async (req, res) => {
-const newTodo = new Todo(req.body);
+const {title,description, important} = req.body;
+const timestamp = new Date
+const newTodo =  new Todo ({
+  title,
+  description,
+  important,
+  timestamp
+})
 const savedTodo = await newTodo.save();
 res.status(201).json(savedTodo)
 }
