@@ -14,8 +14,8 @@ todoSchema.set('toJSON', {
   },
 });
 
-const model = mongoose.model('Todo', todoSchema);
+const Todo = mongoose.model('Todo', todoSchema);
 
 module.exports = {
-  model,
+  Todo,
 }

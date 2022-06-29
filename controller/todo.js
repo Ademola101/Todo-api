@@ -7,8 +7,10 @@ const allTodo = async (req, res) => {
 
 const oneTodo = async (req, res) => {
   const todo = await Todo.findById(req.params.id);
-  todo ? res.json : res.status(404).end()
+  todo ? res.json(todo) : res.status(404).end()
 }
+
+
 
 module.exports = {
   allTodo,
