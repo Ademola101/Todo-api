@@ -8,7 +8,7 @@ console.log('connecting to', MONGODB_URI);
 
 mongoose.connect(MONGODB_URI).then(() => {
   console.log('connected to db');
-}).catch( err => console.log('error connecting to db', error.message));
+}).catch( err => console.log('error connecting to db', err.message));
 
 app.use(express.json());
 app.use(router);
