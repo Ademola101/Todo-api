@@ -11,8 +11,8 @@ const oneTodo = async (req, res) => {
 }
 
 const addTodo = async (req, res) => {
-const {title,description, important} = req.body;
-const timestamp = new Date
+const {title,description, important, timestamp} = req.body;
+
 const newTodo =  new Todo ({
   title,
   description,
@@ -29,11 +29,13 @@ const deleteTodo = async (req, res) => {
 };
 
 const updateTodo = async(req, res) => {
-  const { title, description, important } = req.body
+  const { title, description, important,timestamp } = req.body
   const newTodo = {
     title,
     description,
     important,
+    timestamp,
+
   };
 
 try{

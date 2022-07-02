@@ -4,7 +4,10 @@ const todoSchema = new mongoose.Schema({
   title: String,
   description : String,
   important: Boolean,
-  timestamp: Date
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 todoSchema.set('toJSON', {
