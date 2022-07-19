@@ -1,13 +1,22 @@
 const { Todo } = require('../model/todo');
 
 const allTodo = async (req, res) => {
-  const todos = await Todo.find({});
-  res.json(todos)
+
+  try {
+    const todos = await Todo.find({});
+  res.status(200).json(todos)
+    
+  } catch (error) {
+
+    res.status(404)
+    
+  }
+  
 }
 
 const oneTodo = async (req, res) => {
   const todo = await Todo.findById(req.params.id);
-  todo ? res.json(todo) : res.status(404).end()
+  todo ? res.status(200).json(todo) : res.status(404).end()
 }
 
 const addTodo = async (req, res) => {
@@ -18,9 +27,16 @@ const newTodo =  new Todo ({
   description,
   important,
   timestamp
-})
-const savedTodo = await newTodo.save();
+}) 
+
+try {
+  const savedTodo = await newTodo.save();
 res.status(201).json(savedTodo)
+
+  
+} catch (error) {
+  res.status(422)
+}
 };
 
 const deleteTodo = async (req, res) => {
