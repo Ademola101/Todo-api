@@ -8,7 +8,7 @@ const allTodo = async (req, res) => {
     
   } catch (error) {
 
-    res.status(404)
+    res.status(404).end()
     
   }
   
@@ -35,7 +35,7 @@ res.status(201).json(savedTodo)
 
   
 } catch (error) {
-  res.status(422)
+  res.status(422).end()
 }
 };
 
@@ -60,7 +60,7 @@ res.json(updatedTodo)
 }
 
 catch(err){
-  res.status(400)
+  res.status(400).end()
 }}
 
 
